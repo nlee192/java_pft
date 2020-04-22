@@ -1,4 +1,4 @@
-package HomeworkTests;
+package homeworktests;
 
 import Homework1.Point;
 import org.testng.Assert;
@@ -13,5 +13,12 @@ public class PointTests {
     Point p2 = new Point(5, 8);
     Assert.assertEquals(Point.distance(p1, p2),5);
 
+  }
+
+  @Test
+  public void testDistance2 () {
+    Point p1 = new Point (0, 0);
+    Point p2 = new Point(0, 3);
+    assert Point.distance(p1, p2) == 3;
   }
 }
