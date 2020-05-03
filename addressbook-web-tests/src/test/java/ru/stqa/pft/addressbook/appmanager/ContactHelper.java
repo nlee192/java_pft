@@ -1,8 +1,11 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.NewContactData;
 import ru.stqa.pft.addressbook.tests.TestBase;
 
@@ -12,12 +15,18 @@ public class ContactHelper extends HelperBase {
     super(wd);
   }
 
-  public void fillContactForm(NewContactData newContactData) {
+  public void fillContactForm(NewContactData newContactData, boolean creation) {
     type (By.name("firstname"),newContactData.getFirstname());
     type(By.name("lastname"), newContactData.getLastname());
     type(By.name("home"), newContactData.getPhonenumber());
     type(By.name("email"), newContactData.getEmail());
     type(By.name("address2"), newContactData.getAddress());
+
+    if (creation) {
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(newContactData.getGroup());
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    }
   }
 
   public void submitNewContact() {
@@ -48,3 +57,5 @@ public class ContactHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 }
+
+
