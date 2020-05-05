@@ -7,6 +7,11 @@ public class ContactModification extends TestBase {
 
   @Test
   public void testContactModification() {
+    if (! app.getContactHelper().isThereAContact()) {
+      app.getContactHelper().createContact(new NewContactData("Natasha", "Lee",
+              "(123)1234567", "na@le.com", "123 Terra ln, Richmond, TX", "2"), true);
+      app.getNavigationHelper().returnHomePage();
+    }
     app.getContactHelper().initEditContact();
     app.getContactHelper().fillContactForm(new NewContactData("black",
             "bird", "(123)1234567", "b@b.com",

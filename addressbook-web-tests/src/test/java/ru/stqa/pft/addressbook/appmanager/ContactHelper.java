@@ -7,6 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.NewContactData;
+import ru.stqa.pft.addressbook.tests.NewContact;
 import ru.stqa.pft.addressbook.tests.TestBase;
 
 public class ContactHelper extends HelperBase {
@@ -55,6 +56,16 @@ public class ContactHelper extends HelperBase {
 
   public void acceptAlert() {
     wd.switchTo().alert().accept();
+  }
+
+  public void createContact(NewContactData contact, boolean creation) {
+    initNewContactCreation();
+    fillContactForm(contact, creation);
+    submitNewContact();
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
   }
 }
 
