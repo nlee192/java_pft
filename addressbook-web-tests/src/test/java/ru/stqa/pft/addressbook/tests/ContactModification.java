@@ -14,7 +14,7 @@ public class ContactModification extends TestBase {
       app.getNavigationHelper().returnHomePage();
     }
     int before = app.getContactHelper().getContactCount();
-    app.getContactHelper().initEditContact();
+    app.getContactHelper().initEditContact(before - 1);
     app.getContactHelper().fillContactForm(new NewContactData("black",
             "bird", "(123)1234567", "b@b.com",
             "123 street", null), false);
