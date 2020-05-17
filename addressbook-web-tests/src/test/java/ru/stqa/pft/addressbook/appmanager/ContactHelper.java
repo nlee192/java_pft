@@ -1,14 +1,14 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-import ru.stqa.pft.addressbook.model.NewContactData;
-import ru.stqa.pft.addressbook.tests.NewContact;
-import ru.stqa.pft.addressbook.tests.TestBase;
+import ru.stqa.pft.addressbook.model.ContactData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
@@ -16,7 +16,7 @@ public class ContactHelper extends HelperBase {
     super(wd);
   }
 
-  public void fillContactForm(NewContactData newContactData, boolean creation) {
+  public void fillContactForm(ContactData newContactData, boolean creation) {
     type (By.name("firstname"),newContactData.getFirstname());
     type(By.name("lastname"), newContactData.getLastname());
     type(By.name("home"), newContactData.getPhonenumber());
@@ -58,7 +58,7 @@ public class ContactHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
-  public void createContact(NewContactData contact, boolean creation) {
+  public void createContact(ContactData contact, boolean creation) {
     initNewContactCreation();
     fillContactForm(contact, creation);
     submitNewContact();
@@ -70,6 +70,17 @@ public class ContactHelper extends HelperBase {
 
   public int getContactCount() {
     return wd.findElements(By.name("selected[]")).size();
+  }
+
+  public List<ContactData> getContactList() {
+    List<ContactData> contacts = new ArrayList<ContactData>();
+    List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
+    for (WebElement element : elements) {
+      String firstname = element.getText();
+      ContactData contact = new ContactData(firstname, null, null, null,null, null);
+      contacts.add(contact);
+    }
+    return contacts;
   }
 }
 
