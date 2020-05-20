@@ -5,7 +5,6 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class ContactCreationTests extends TestBase {
@@ -16,7 +15,7 @@ public class ContactCreationTests extends TestBase {
     ContactData contact = new ContactData("Natasha", "Lee",
             "(123)1234567", "na@le.com", "123 Terra ln, Richmond, TX", "2");
     app.getContactHelper().createContact(contact, true);
-    app.getNavigationHelper().returnHomePage();
+    app.goTo().homePage();
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size() + 1);
 

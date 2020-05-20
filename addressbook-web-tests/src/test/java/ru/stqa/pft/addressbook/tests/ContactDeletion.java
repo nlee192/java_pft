@@ -13,13 +13,13 @@ public class ContactDeletion extends TestBase {
     if (! app.getContactHelper().isThereAContact()) {
       app.getContactHelper().createContact(new ContactData("Natasha", "Lee",
               "(123)1234567", "na@le.com", "123 Terra ln, Richmond, TX", "2"), true);
-      app.getNavigationHelper().returnHomePage();
+      app.goTo().homePage();
     }
     List<ContactData> before = app.getContactHelper().getContactList();
     app.getContactHelper().selectContact(before.size() - 1);
     app.getContactHelper().deleteSelectedContact();
     app.getContactHelper().acceptAlert();
-    app.getNavigationHelper().returnHomePage();
+    app.goTo().homePage();
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size() - 1);
 

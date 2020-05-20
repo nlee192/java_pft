@@ -5,19 +5,18 @@ import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class GroupCreationTests extends TestBase {
 
   @Test
   public void testGroupCreation() throws Exception {
-    app.getGroupHelper().gotoGroupPage();
-    List<GroupData> before = app.getGroupHelper().getGroupList();
-    GroupData group = new GroupData("new", null, null);
-    app.getGroupHelper().createGroup(group);
-    app.getGroupHelper().gotoGroupPage();
-    List<GroupData> after = app.getGroupHelper().getGroupList();
+    app.group().gotoGroupPage();
+    List<GroupData> before = app.group().list();
+    GroupData group = new GroupData().withName("new");
+    app.group().create(group);
+    app.group().gotoGroupPage();
+    List<GroupData> after = app.group().list();
     Assert.assertEquals(after.size(), before.size() + 1);
 
     int max = 0;
