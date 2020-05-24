@@ -39,6 +39,7 @@ public class GroupHelper extends HelperBase {
   }
 
   public void selectGroupById(int id) {
+
     wd.findElement(By.xpath("//input[@value='" + id + "']")).click();
   }
 

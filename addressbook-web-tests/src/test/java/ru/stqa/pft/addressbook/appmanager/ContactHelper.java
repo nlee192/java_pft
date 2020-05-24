@@ -51,6 +51,10 @@ public class ContactHelper extends HelperBase {
     wd.findElements(By.name("selected[]")).get(index).click();
   }
 
+  public void selectContactById(int id) {
+    wd.findElement(By.xpath("//input[@value='" + id + "']")).click();
+  }
+
   public void initEditContact(int i) {
     wd.findElements(By.xpath("//*[@title='Edit']")).get(i).click();
   }
@@ -82,6 +86,13 @@ public class ContactHelper extends HelperBase {
 
   public void delete(int index) {
     selectContact(index);
+    deleteSelectedContact();
+    acceptAlert();
+    manager.goTo().homePage();
+  }
+
+  public void delete(ContactData contact) {
+    selectContactById(contact.getId());
     deleteSelectedContact();
     acceptAlert();
     manager.goTo().homePage();
@@ -120,6 +131,8 @@ public class ContactHelper extends HelperBase {
     }
     return contacts;
   }
+
+
 }
 
 
