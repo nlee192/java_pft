@@ -17,6 +17,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.assertEquals;
 
 public class GroupModificationTests extends TestBase {
+
   @BeforeMethod
   public void ensurePreconditions() {
     app.group().gotoGroupPage();
