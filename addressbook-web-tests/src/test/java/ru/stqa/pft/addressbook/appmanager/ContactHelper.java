@@ -34,8 +34,10 @@ public class ContactHelper extends HelperBase {
     type(By.name("address2"), newContactData.getAddress());
 
     if (creation) {
+      isElementPresent(By.name("new_group"));
       if (newContactData.getGroup() != null) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(newContactData.getGroup());
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(newContactData.getGroup());
+      }
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
