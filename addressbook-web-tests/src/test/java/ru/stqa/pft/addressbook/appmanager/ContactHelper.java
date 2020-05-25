@@ -60,7 +60,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void initEditContact(int i) {
-    wd.findElement(By.xpath("//a[@href='edit.php?id='" + i + "'']")).click();
+    wd.findElement(By.xpath("//a[@href='edit.php?id=" + i + "']")).click();
   }
 
   public void updateContact() {
