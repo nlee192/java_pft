@@ -64,7 +64,11 @@ public class GroupHelper extends HelperBase {
     submitGroupModification();
     gotoGroupPage();
   }
-
+  public void delete(GroupData group) {
+    selectGroupById(group.getId());
+    deleteSelectedGroups();
+    gotoGroupPage();
+  }
   public boolean isThereAGroup() {
     return isElementPresent(By.name("selected[]"));
   }
@@ -93,9 +97,4 @@ public class GroupHelper extends HelperBase {
     click(By.linkText("groups"));
   }
 
-  public void delete(GroupData group) {
-    selectGroupById(group.getId());
-    deleteSelectedGroups();
-    gotoGroupPage();
   }
-}

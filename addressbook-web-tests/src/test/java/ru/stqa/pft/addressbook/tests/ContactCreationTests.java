@@ -32,7 +32,7 @@ public class ContactCreationTests extends TestBase {
 //    after.sort(byId);
 //    assertEquals(before, after);
     assertThat(after, equalTo(
-            contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt())));
+            before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
 
   }
 }
