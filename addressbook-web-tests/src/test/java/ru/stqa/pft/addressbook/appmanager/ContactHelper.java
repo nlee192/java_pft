@@ -31,7 +31,7 @@ public class ContactHelper extends HelperBase {
     type(By.name("lastname"), newContactData.getLastname());
     type(By.name("home"), newContactData.getPhonenumber());
     type(By.name("email"), newContactData.getEmail());
-    type(By.name("address2"), newContactData.getAddress());
+    type(By.name("address"), newContactData.getAddress());
 
     if (creation) {
       isElementPresent(By.name("new_group"));
