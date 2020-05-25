@@ -44,7 +44,7 @@ public class ContactModification extends TestBase {
 //    Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
 //    before.sort(byId);
 //    after.sort(byId);
-    assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
+    assertThat(after, equalTo(before.withAdded(contact).without(modifiedContact)));
 
   }
 

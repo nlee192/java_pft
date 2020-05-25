@@ -100,6 +100,10 @@ public class ContactData {
             "id=" + id +
             ", firstname='" + firstname + '\'' +
             ", lastname='" + lastname + '\'' +
+            ", phonenumber='" + phonenumber + '\'' +
+            ", email='" + email + '\'' +
+            ", address='" + address + '\'' +
+            ", group='" + group + '\'' +
             '}';
   }
 
