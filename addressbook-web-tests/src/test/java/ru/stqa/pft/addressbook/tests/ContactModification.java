@@ -33,7 +33,7 @@ public class ContactModification extends TestBase {
 //    int index = before.size() - 1;
     ContactData contact = new ContactData().
             withId(modifiedContact.getId()).withFirstname("black").
-            withLastname("bird").withPhonenumber("(123)1234567").withEmail("b@b.com").
+            withLastname("bird").withPhonenumber("1231234567").withEmail("b@b.com").
             withAddress("123 street");
     app.contact().modify(contact);
     Contacts after = app.contact().all();
