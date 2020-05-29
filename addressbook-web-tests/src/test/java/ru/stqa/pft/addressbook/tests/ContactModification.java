@@ -33,8 +33,7 @@ public class ContactModification extends TestBase {
 //    int index = before.size() - 1;
     ContactData contact = new ContactData().
             withId(modifiedContact.getId()).withFirstname("black").
-            withLastname("bird").withPhonenumber("1231234567").withEmail("b@b.com").
-            withAddress("123 street");
+            withLastname("bird");
     app.contact().modify(contact);
     assertThat(app.contact().count(), equalTo(before.size()));
     Contacts after = app.contact().all();
