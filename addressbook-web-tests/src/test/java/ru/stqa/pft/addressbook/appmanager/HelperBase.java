@@ -6,6 +6,8 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.io.File;
+
 public class HelperBase {
   protected WebDriver wd;
 
@@ -28,6 +30,11 @@ public class HelperBase {
     }
   }
 
+  protected void attach(By locator, File file) { //for adding files no need to "click"
+    if (file != null) {
+      wd.findElement(locator).sendKeys(file.getAbsolutePath()); //turning relevant path into absolute
+    }
+  }
   public boolean isAlertPresent() {
     try {
       wd.switchTo().alert();
