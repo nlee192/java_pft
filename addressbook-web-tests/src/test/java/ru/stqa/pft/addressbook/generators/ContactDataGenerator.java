@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.generators;
 
+import com.beust.jcommander.Parameter;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.io.File;
@@ -10,6 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContactDataGenerator {
+
+//  @Parameter
+//  public int count;
+//
+//  @Parameter
+//  public String file;
+//
 
   public static void main(String[] args) throws IOException {
     int count = Integer.parseInt(args[0]);
@@ -22,7 +30,7 @@ public class ContactDataGenerator {
   private static void save(List<ContactData> contacts, File file) throws IOException {
     Writer writer = new FileWriter(file);
     for (ContactData contact: contacts) {
-      writer.write(String.format("%s;%s;%s\n", contact.getFirstname(),contact.getLastname()));
+      writer.write(String.format("%s;%s\n", contact.getFirstname(),contact.getLastname()));
     }
     writer.close();
   }
