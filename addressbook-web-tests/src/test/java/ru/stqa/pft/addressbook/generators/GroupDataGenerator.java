@@ -2,6 +2,7 @@ package ru.stqa.pft.addressbook.generators;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
+import com.beust.jcommander.ParameterException;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.io.File;
@@ -19,14 +20,20 @@ public class GroupDataGenerator {
   @Parameter(names = "-f", description = "Target file")
   public String file;
 
-  public static void main(String[] args) throws IOException { //adds Exception on pressing
-    // alt+enter on save
+  public static void main(String[] args) throws IOException {
     GroupDataGenerator generator = new GroupDataGenerator();
-    new JCommander(generator,args);
+    JCommander jCommander = new JCommander(generator);
+    try {
+      jCommander.parse(args);
+    } catch (ParameterException ex) {
+      jCommander.usage();
+      return;
+    }
+//    JCommander.newBuilder().addObject(args).build().parse(args);
     generator.run();
 //    according to JCommander documentation
 
-//    Before JCommander:
+//    Without JCommander:
 //    int count = Integer.parseInt(args[0]);
 //    File file = new File(args[1]);
   }
