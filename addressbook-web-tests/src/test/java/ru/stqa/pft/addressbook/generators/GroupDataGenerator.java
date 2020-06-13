@@ -60,9 +60,9 @@ public class GroupDataGenerator {
   private void saveAsJson(List<GroupData> groups, File file) throws IOException {
     Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();//to beautify json
     String json = gson.toJson(groups);
-    Writer writer = new FileWriter(file);
-    writer.write(json);
-    writer.close();
+    try (Writer writer = new FileWriter(file)) { //try automatically closes files
+      writer.write(json);
+    }
   }
 
   private void saveAsXml(List<GroupData> groups, File file) throws IOException {
@@ -70,20 +70,20 @@ public class GroupDataGenerator {
     xstream.processAnnotations(GroupData.class); //reads annotations in GroupData class
 //    xstream.alias("group", GroupData.class); works without annotations in GroupData class
     String xml = xstream.toXML(groups);
-    Writer writer = new FileWriter(file);
-    writer.write(xml);
-    writer.close();
+    try (Writer writer = new FileWriter(file)) {
+      writer.write(xml);
+    }
   }
 
   private void saveAsCsv(List<GroupData> groups, File file) throws IOException { //adds Exception on pressing
     // alt+enter on FileWriter, moves the exception to main method
     System.out.println(new File(".").getAbsolutePath());
-    Writer writer = new FileWriter(file); //opening file for writing
-    for (GroupData group: groups) { //for each group
-      writer.write(String.format("%s;%s;%s\n",group.getName(),group.getHeader(),group.getFooter())); //; is used as separator
-      //\n for break
+    try (Writer writer = new FileWriter(file)) {//opening file for writing
+      for (GroupData group : groups) { //for each group
+        writer.write(String.format("%s;%s;%s\n", group.getName(), group.getHeader(), group.getFooter())); //; is used as separator
+        //\n for break}
+      }
     }
-    writer.close();//to make sure all data is saved
   }
 
   private List<GroupData> generateGroups(int count) {
