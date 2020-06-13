@@ -22,7 +22,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class GroupCreationTests extends TestBase {
 
   @DataProvider
-  //READING XML
+  //READING JSON
   public Iterator<Object[]>validGroupsFromJson() throws IOException {
     BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/groups.json")));
     String json = "";
